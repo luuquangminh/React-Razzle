@@ -1,33 +1,38 @@
-import React from 'react';
-import logo from './react.svg';
-import './Home.css';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import Icon from "@material-ui/core/Icon";
+import DeleteIcon from "@material-ui/icons/Delete";
+import NavigationIcon from "@material-ui/icons/Navigation";
 
-class Home extends React.Component {
-  render() {
-    return (
-      <div className="Home">
-        <div className="Home-header">
-          <img src={logo} className="Home-logo" alt="logo" />
-          <h2>Welcome to Razzle</h2>
-        </div>
-        <p className="Home-intro">
-          To get started, edit <code>src/App.js</code> or{' '}
-          <code>src/Home.js</code> and save to reload.
-        </p>
-        <ul className="Home-resources">
-          <li>
-            <a href="https://github.com/jaredpalmer/razzle">Docs</a>
-          </li>
-          <li>
-            <a href="https://github.com/jaredpalmer/razzle/issues">Issues</a>
-          </li>
-          <li>
-            <a href="https://palmer.chat">Community Slack</a>
-          </li>
-        </ul>
-      </div>
-    );
+const useStyles = makeStyles(theme => ({
+  fab: {
+    margin: theme.spacing(1)
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
   }
-}
+}));
 
-export default Home;
+export default function FloatingActionButtons() {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Fab color="primary" aria-label="Add" className={classes.fab}>
+        <AddIcon />
+      </Fab>
+      <Fab color="secondary" aria-label="Edit" className={classes.fab}>
+        <Icon>edit_icon</Icon>
+      </Fab>
+      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
+        <NavigationIcon className={classes.extendedIcon} />
+        Extended
+      </Fab>
+      <Fab disabled aria-label="Delete" className={classes.fab}>
+        <DeleteIcon />
+      </Fab>
+    </div>
+  );
+}
